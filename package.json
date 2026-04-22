@@ -1,34 +1,80 @@
-{
-  "name": "react-example",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite --port=3000 --host=0.0.0.0",
-    "build": "vite build",
-    "preview": "vite preview",
-    "clean": "rm -rf dist",
-    "lint": "tsc --noEmit"
-  },
-  "dependencies": {
-    "@google/genai": "^1.29.0",
-    "@tailwindcss/vite": "^4.1.14",
-    "@vitejs/plugin-react": "^5.0.4",
-    "lucide-react": "^0.546.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "vite": "^6.2.0",
-    "express": "^4.21.2",
-    "dotenv": "^17.2.3",
-    "motion": "^12.23.24"
-  },
-  "devDependencies": {
-    "@types/node": "^22.14.0",
-    "autoprefixer": "^10.4.21",
-    "tailwindcss": "^4.1.14",
-    "tsx": "^4.21.0",
-    "typescript": "~5.8.2",
-    "vite": "^6.2.0",
-    "@types/express": "^4.17.21"
-  }
-}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saddam T-Shirt Store | Premium Collection</title>
+    <style>
+        :root { --primary: #1a1a1a; --accent: #ff4757; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #fdfdfd; color: #333; }
+        
+        /* Hero Section with Beti's Photo */
+        .hero { 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('beti.jpg');
+            background-size: cover; background-position: center;
+            height: 450px; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; color: white; text-align: center;
+        }
+        .hero h1 { font-size: 3rem; margin: 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .hero p { font-size: 1.2rem; background: var(--accent); padding: 8px 20px; border-radius: 50px; margin-top: 15px; }
+
+        .container { padding: 40px 20px; max-width: 1100px; margin: auto; }
+        .section-title { text-align: center; margin-bottom: 40px; font-size: 2.2rem; position: relative; padding-bottom: 10px; }
+        .section-title::after { content: ''; width: 80px; height: 4px; background: var(--accent); position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
+        .card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: 0.3s; border: 1px solid #eee; }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .card img { width: 100%; height: 350px; object-fit: cover; }
+        .card-info { padding: 20px; text-align: center; }
+        .price { color: var(--accent); font-size: 1.6rem; font-weight: bold; margin: 10px 0; }
+        
+        .buy-btn { 
+            display: block; background: #25d366; color: white; padding: 14px; 
+            text-decoration: none; border-radius: 8px; font-weight: bold; transition: 0.3s; font-size: 1.1rem;
+        }
+        .buy-btn:hover { background: #128c7e; transform: scale(1.02); }
+        
+        footer { background: #1a1a1a; color: white; text-align: center; padding: 40px; margin-top: 60px; }
+        .whatsapp-footer { color: #25d366; font-weight: bold; font-size: 1.2rem; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <h1>SADDAM'S PREMIUM STORE</h1>
+    <p>Dedicated to my lovely daughter ❤️</p>
+</div>
+
+<div class="container">
+    <h2 class="section-title">New Arrivals</h2>
+    
+    <div class="grid" id="products">
+        </div>
+</div>
+
+<footer>
+    <p>© 2026 Saddam T-Shirt Store | Exclusive Quality</p>
+    <p>Order on WhatsApp: <a href="https://wa.me/917606829390" class="whatsapp-footer">+91 7606829390</a></p>
+</footer>
+
+<script>
+    const productGrid = document.getElementById('products');
+    // Generating 50 product slots
+    for (let i = 1; i <= 50; i++) {
+        productGrid.innerHTML += `
+            <div class="card">
+                <img src="${i}.jpg" onerror="this.src='https://via.placeholder.com/300x400?text=Design+Soon'" alt="T-shirt">
+                <div class="card-info">
+                    <h3>Premium Collection #${i}</h3>
+                    <p class="price">₹599</p>
+                    <a href="https://wa.me/917606829390?text=Hello Saddam, I want to order Design #${i}" class="buy-btn">Order on WhatsApp</a>
+                </div>
+            </div>
+        `;
+    }
+</script>
+
+</body>
+</html>
